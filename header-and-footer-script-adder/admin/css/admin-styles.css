@@ -1,0 +1,447 @@
+/**
+ * Admin styles for Advanced Scripts Manager
+ *
+ * @package    AdvancedScriptsManager
+ * @subpackage AdvancedScriptsManager/admin/css
+ * @since      2.0.3
+ */
+
+/* Main admin page styles */
+.asm-admin-header {
+	background: #f9f9f9;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	padding: 15px;
+	margin: 20px 0;
+}
+
+.asm-admin-header p {
+	margin: 0;
+	font-size: 14px;
+	color: #666;
+}
+
+/* Field group styles */
+.asm-field-group {
+	margin-bottom: 30px;
+	padding: 20px;
+	background: #fff;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+
+.asm-field-group .description {
+	margin: 8px 0 15px 0;
+	font-style: italic;
+	color: #666;
+}
+
+.asm-field-group label {
+	display: block;
+	margin-bottom: 10px;
+	font-weight: 600;
+	color: #333;
+}
+
+.asm-field-group select {
+	margin-top: 10px;
+	padding: 5px 10px;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	background: #fff;
+	min-width: 200px;
+}
+
+/* Code editor styles */
+.asm-code-editor {
+	font-family: Consolas, Monaco, 'Courier New', monospace;
+	font-size: 13px;
+	line-height: 1.4;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 10px;
+	background: #f9f9f9;
+	resize: vertical;
+	min-height: 200px;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.asm-code-editor:focus {
+	border-color: #0073aa;
+	box-shadow: 0 0 0 1px #0073aa;
+	outline: none;
+}
+
+/* CodeMirror overrides */
+.CodeMirror {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	font-size: 13px;
+	line-height: 1.4;
+	height: auto;
+	min-height: 200px;
+}
+
+.CodeMirror-focused {
+	border-color: #0073aa;
+	box-shadow: 0 0 0 1px #0073aa;
+}
+
+.CodeMirror-scroll {
+	min-height: 200px;
+}
+
+/* Instructions section */
+.asm-admin-footer {
+	margin-top: 40px;
+	padding: 20px;
+	background: #f9f9f9;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+
+.asm-admin-footer h3 {
+	margin-top: 0;
+	color: #333;
+	border-bottom: 1px solid #ddd;
+	padding-bottom: 10px;
+}
+
+.asm-instructions {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 20px;
+	margin-top: 20px;
+}
+
+.asm-instruction-item {
+	background: #fff;
+	padding: 15px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+
+.asm-instruction-item h4 {
+	margin-top: 0;
+	margin-bottom: 10px;
+	color: #0073aa;
+}
+
+.asm-instruction-item ul {
+	margin: 10px 0;
+	padding-left: 20px;
+}
+
+.asm-instruction-item li {
+	margin-bottom: 5px;
+	line-height: 1.4;
+}
+
+/* Meta box styles */
+.asm-meta-box {
+	padding: 15px;
+}
+
+.asm-meta-field {
+	margin-bottom: 20px;
+}
+
+.asm-meta-field label {
+	display: block;
+	margin-bottom: 5px;
+	font-weight: 600;
+}
+
+.asm-meta-field .description {
+	margin-bottom: 8px;
+	font-style: italic;
+	color: #666;
+	font-size: 13px;
+}
+
+.asm-meta-field textarea {
+	width: 100%;
+	min-height: 150px;
+	font-family: Consolas, Monaco, 'Courier New', monospace;
+	font-size: 13px;
+	line-height: 1.4;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 10px;
+	background: #f9f9f9;
+	resize: vertical;
+	box-sizing: border-box;
+}
+
+.asm-meta-field textarea:focus {
+	border-color: #0073aa;
+	box-shadow: 0 0 0 1px #0073aa;
+	outline: none;
+	background: #fff;
+}
+
+.asm-meta-info {
+	background: #f0f8ff;
+	border: 1px solid #b3d9ff;
+	border-radius: 4px;
+	padding: 15px;
+	margin-top: 20px;
+}
+
+.asm-meta-info h4 {
+	margin-top: 0;
+	margin-bottom: 10px;
+	color: #0066cc;
+}
+
+.asm-meta-info ul {
+	margin: 0;
+	padding-left: 20px;
+}
+
+.asm-meta-info li {
+	margin-bottom: 5px;
+	line-height: 1.4;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+	.asm-instructions {
+		grid-template-columns: 1fr;
+	}
+	
+	.asm-field-group {
+		padding: 15px;
+	}
+	
+	.asm-code-editor,
+	.asm-meta-field textarea {
+		font-size: 14px;
+	}
+}
+
+/* Settings page specific styles */
+.asm-settings-page .form-table th {
+	width: 200px;
+	padding: 20px 10px 20px 0;
+	vertical-align: top;
+}
+
+.asm-settings-page .form-table td {
+	padding: 15px 10px;
+	vertical-align: top;
+}
+
+/* Success/error messages */
+.asm-notice {
+	padding: 12px;
+	margin: 15px 0;
+	border-radius: 4px;
+	border-left: 4px solid;
+}
+
+.asm-notice.success {
+	background: #f0f8ff;
+	border-left-color: #00a32a;
+	color: #155724;
+}
+
+.asm-notice.error {
+	background: #fef7f7;
+	border-left-color: #dc3232;
+	color: #721c24;
+}
+
+.asm-notice.warning {
+	background: #fffbf0;
+	border-left-color: #ffb900;
+	color: #856404;
+}
+
+/* Loading states */
+.asm-loading {
+	opacity: 0.6;
+	pointer-events: none;
+}
+
+.asm-spinner {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	border: 2px solid #f3f3f3;
+	border-top: 2px solid #0073aa;
+	border-radius: 50%;
+	animation: asm-spin 1s linear infinite;
+	margin-left: 10px;
+}
+
+@keyframes asm-spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+/* Accessibility improvements */
+.asm-sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0,0,0,0);
+	white-space: nowrap;
+	border: 0;
+}
+
+/* Focus styles for better accessibility */
+.asm-code-editor:focus,
+.asm-meta-field textarea:focus,
+.asm-field-group select:focus {
+	outline: 2px solid #0073aa;
+	outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+	.asm-field-group,
+	.asm-instruction-item,
+	.asm-meta-info {
+		border-width: 2px;
+	}
+	
+	.asm-code-editor,
+	.asm-meta-field textarea {
+		border-width: 2px;
+	}
+}
+
+/* Specific post/page selection styles */
+.asm-specific-selection {
+	margin-top: 15px;
+	padding: 15px;
+	background: #f9f9f9;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+
+.asm-specific-selection label {
+	display: block;
+	margin-bottom: 8px;
+	font-weight: 600;
+	color: #333;
+}
+
+.asm-multiselect {
+	width: 100%;
+	max-width: 400px;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	background: #fff;
+	font-size: 13px;
+}
+
+.asm-multiselect optgroup {
+	font-weight: bold;
+	color: #0073aa;
+}
+
+.asm-multiselect option {
+	padding: 4px 8px;
+	font-weight: normal;
+	color: #333;
+}
+
+.asm-multiselect option:hover {
+	background: #f0f8ff;
+}
+
+.asm-post-page-selector .description {
+	margin-top: 8px;
+	font-size: 12px;
+	color: #666;
+	font-style: italic;
+}
+
+/* Donate section styles */
+.asm-donate-section {
+	margin: 30px 0;
+	padding: 0;
+}
+
+.asm-donate-box {
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: white;
+	padding: 25px;
+	border-radius: 8px;
+	text-align: center;
+	box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+	border: none;
+}
+
+.asm-donate-box h3 {
+	margin-top: 0;
+	margin-bottom: 15px;
+	color: white;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.asm-donate-box p {
+	color: rgba(255,255,255,0.9);
+	margin-bottom: 20px;
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+.asm-donate-box .description {
+	color: rgba(255,255,255,0.8);
+	font-size: 12px;
+	margin-top: 15px;
+	margin-bottom: 0;
+	font-style: italic;
+}
+
+.asm-donate-box form {
+	margin: 15px 0;
+}
+
+.asm-donate-box input[type="image"] {
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	border-radius: 4px;
+}
+
+.asm-donate-box input[type="image"]:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+/* Responsive donate section */
+@media (max-width: 768px) {
+	.asm-donate-box {
+		padding: 20px 15px;
+	}
+	
+	.asm-donate-box h3 {
+		font-size: 18px;
+	}
+}
+
+/* Print styles */
+@media print {
+	.asm-admin-header,
+	.asm-admin-footer,
+	.submit {
+		display: none;
+	}
+	
+	.asm-field-group {
+		break-inside: avoid;
+		box-shadow: none;
+	}
+	
+	.asm-specific-selection {
+		display: none;
+	}
+}
