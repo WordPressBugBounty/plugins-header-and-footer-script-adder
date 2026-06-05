@@ -48,6 +48,23 @@
 
 		<!-- Right Section (Small) -->
 		<div style="flex: 1; padding: 15px; background: #f9f9f9; border: 1px solid #ccc;">
+			<!-- Upgrade to Pro Card -->
+			<div class="asm-upgrade-pro-section" style="background: linear-gradient(135deg, #1e3a8a, #3b82f6); color: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);">
+				<h3 style="color: white; margin-top: 0; font-size: 18px; font-weight: 700;"><?php esc_html_e('🚀 Upgrade to Pro', 'header-footer-script-adder'); ?></h3>
+				<p style="font-size: 13px; line-height: 1.5; color: #eff6ff; margin-bottom: 15px;">
+					<?php esc_html_e('Unlock advanced features to manage and optimize your website scripts like a pro:', 'header-footer-script-adder'); ?>
+				</p>
+				<ul style="font-size: 13px; margin: 0 0 20px 0; padding-left: 20px; color: #eff6ff; list-style-type: disc;">
+					<li><strong><?php esc_html_e('Individual Snippets CPT', 'header-footer-script-adder'); ?></strong></li>
+					<li><strong><?php esc_html_e('Conditional Logic Builder', 'header-footer-script-adder'); ?></strong></li>
+					<li><strong><?php esc_html_e('One-Click Tracking Pixels', 'header-footer-script-adder'); ?></strong></li>
+					<li><strong><?php esc_html_e('Script Minification & Defer', 'header-footer-script-adder'); ?></strong></li>
+				</ul>
+				<a href="<?php echo esc_url( admin_url( 'admin.php?page=custom-scripts-pricing' ) ); ?>" class="button button-primary" style="background-color: #ffffff; color: #1e3a8a; border: none; font-weight: bold; width: 100%; text-align: center; display: block; padding: 8px 0; height: auto; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-decoration: none;">
+					<?php esc_html_e('Get Pro Version Now', 'header-footer-script-adder'); ?>
+				</a>
+			</div>
+
 			<div class="asm-review-section">
 				<h3><?php esc_html_e('Enjoying the Plugin?', 'header-footer-script-adder'); ?></h3>
 				<p><?php esc_html_e('If you love using this plugin, please take a moment to rate it and leave a review. Your feedback helps us improve and motivate us to keep making it better!', 'header-footer-script-adder'); ?>

@@ -1,11 +1,11 @@
 === Header Footer Script Adder – Insert Code in Header, Body & Footer ===
-Contributors: mahethekiller
+Contributors: mahethekiller, freemius
 Tags: header, footer, body, insert code, add scripts, google analytics, facebook pixel, tracking, custom css, javascript, meta tags, seo, tag manager, chat widgets
 Requires at least: 6.0
-Tested up to: 6.8.1
+Tested up to: 6.9
 Donate link: https://www.buymeacoffee.com/mahethekiller
 Requires PHP: 7.4
-Stable tag: 2.0.6
+Stable tag: 2.0.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,7 +13,7 @@ Easily add custom scripts and code to your WordPress site’s header, body, or f
 
 == Description ==
 
-**Header Footer Script Adder** is a powerful and user-friendly WordPress plugin that lets you easily insert **custom HTML, CSS, and JavaScript** into your site’s header, body, or footer.  
+**Header Footer Script Adder** is a powerful and user-friendly WordPress plugin that lets you easily insert **custom HTML, CSS, and JavaScript** into your site’s header, body, or footer.
 
 You don’t need to edit theme files or worry about losing your code after updates. This plugin keeps your scripts safe, reusable, and flexible with **conditional loading and per-page overrides**.
 
@@ -73,49 +73,54 @@ You don’t need to edit theme files or worry about losing your code after updat
 
 == Frequently Asked Questions ==
 
-= Is this plugin safe to use? =  
+= Is this plugin safe to use? =
 Yes. Input is sanitized, and only admins can add or edit scripts. It follows WordPress security best practices.
 
-= Will it slow down my website? =  
+= Will it slow down my website? =
 No. It’s lightweight and optimized. Scripts only load where needed.
 
-= Can I add scripts to specific pages only? =  
+= Can I add scripts to specific pages only? =
 Yes. Use the per-page overrides in the post/page editor.
 
-= Does it support Gutenberg (Block Editor)? =  
+= Does it support Gutenberg (Block Editor)? =
 Yes. Works with both Gutenberg and Classic Editor.
 
-= Can I use it on multisite? =  
+= Can I use it on multisite? =
 Yes. Each site can have its own configuration.
 
-= Can I add both Google Analytics and Facebook Pixel together? =  
+= Can I add both Google Analytics and Facebook Pixel together? =
 Yes. You can add multiple scripts in header, body, and footer.
 
-= Will my scripts stay if I switch themes? =  
+= Will my scripts stay if I switch themes? =
 Yes. Code is stored in the database, not in theme files.
 
-= How do I remove plugin data completely? =  
+= How do I remove plugin data completely? =
 When uninstalling, you’ll have the option to remove all saved scripts from your database.
 
-= Can I insert chat widgets or meta tags? =  
+= Can I insert chat widgets or meta tags? =
 Yes. The plugin supports any valid HTML, CSS, or JavaScript code.
 
 == Screenshots ==
 
-1. **Main Settings Page** – Add scripts globally.  
-2. **Code Editor** – Syntax highlighting for easy editing.  
-3. **Conditional Options** – Control script placement (sitewide, homepage, archives, etc.).  
-4. **Per-Page Overrides** – Unique scripts per post or page.  
-5. **Help Section** – Usage instructions and FAQs.  
+1. **Main Settings Page** – Add scripts globally.
+2. **Code Editor** – Syntax highlighting for easy editing.
+3. **Conditional Options** – Control script placement (sitewide, homepage, archives, etc.).
+4. **Per-Page Overrides** – Unique scripts per post or page.
+5. **Help Section** – Usage instructions and FAQs.
 
 == Changelog ==
 
-= 1.0.0 =
-* Initial release.
+= 2.0.7 =
+* Converted plugin architecture to a unified Single Version Model.
+* Integrated Freemius SDK for secure premium features delivery.
+* Added Pro Version upgrade dashboard and conditionally-loaded premium code structure.
+* Verified compatibility with latest WordPress version 6.5.
 
-= 1.2.0 =
-* Added new features and bug fixes.
-* Improved UI for easier code management.
+= 2.0.6 =
+* Fixed a few security issues.
+
+= 2.0.5 =
+* Minor bug fixes and improvements.
 
 = 2.0.3 =
 * Major release.
@@ -127,6 +132,13 @@ Yes. The plugin supports any valid HTML, CSS, or JavaScript code.
 * Block Editor and Classic Editor compatibility.
 * Performance optimizations.
 * Updated documentation.
+
+= 1.2.0 =
+* Added new features and bug fixes.
+* Improved UI for easier code management.
+
+= 1.0.0 =
+* Initial release.
 
 == Upgrade Notice ==
 
@@ -141,7 +153,7 @@ This is a major release. Backup your scripts before updating as older settings m
 
 == Donations ==
 
-If you enjoy this plugin and want to support development, you can buy me a coffee:  
+If you enjoy this plugin and want to support development, you can buy me a coffee:
 👉 [https://www.buymeacoffee.com/mahethekiller](https://www.buymeacoffee.com/mahethekiller)
 
 == Support & Documentation ==
@@ -150,5 +162,5 @@ For support, feature requests, or documentation, please visit the **support foru
 
 == Privacy Policy ==
 
-This plugin does not collect or share personal data. It only loads the scripts you provide.  
+This plugin does not collect or share personal data. It only loads the scripts you provide.
 Any data collection depends on the external scripts you choose to add (e.g., Google Analytics, Facebook Pixel, chat widgets).
