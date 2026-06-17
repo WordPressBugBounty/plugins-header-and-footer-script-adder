@@ -2,10 +2,10 @@
 Contributors: mahethekiller, freemius
 Tags: header, footer, body, insert code, add scripts, google analytics, facebook pixel, tracking, custom css, javascript, meta tags, seo, tag manager, chat widgets
 Requires at least: 6.0
-Tested up to: 6.9
+Tested up to: 7.0
 Donate link: https://www.buymeacoffee.com/mahethekiller
 Requires PHP: 7.4
-Stable tag: 2.0.7
+Stable tag: 2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -110,6 +110,9 @@ Yes. The plugin supports any valid HTML, CSS, or JavaScript code.
 
 == Changelog ==
 
+= 2.1 =
+* Added in-dashboard Affiliate Program page with seamless Google Form integration.
+* Improved dashboard visibility for the affiliate program and upgraded menus.
 = 2.0.7 =
 * Converted plugin architecture to a unified Single Version Model.
 * Integrated Freemius SDK for secure premium features delivery.

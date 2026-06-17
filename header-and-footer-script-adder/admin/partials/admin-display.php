@@ -48,6 +48,16 @@
 
 		<!-- Right Section (Small) -->
 		<div style="flex: 1; padding: 15px; background: #f9f9f9; border: 1px solid #ccc;">
+			
+			<!-- Affiliate Program Card -->
+			<div class="asm-affiliate-section" style="background-color: #f0f7ff; border-left: 4px solid #2271b1; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(34, 113, 177, 0.15);">
+				<h3 style="margin-top: 0; font-size: 18px; font-weight: 700; color: #2271b1;"><?php esc_html_e('💰 Earn 20% Commission!', 'advanced-scripts-manager'); ?></h3>
+				<p style="font-size: 13px; line-height: 1.5; color: #3c434a; margin-bottom: 15px;"><?php esc_html_e('Love using Header Footer Script Adder? Join our affiliate program and earn a 20% commission on every Pro sale you refer!', 'advanced-scripts-manager'); ?></p>
+				<a href="<?php echo esc_url( admin_url( 'admin.php?page=asm-affiliate' ) ); ?>" class="button button-primary" style="background-color: #2271b1; color: #ffffff; border: none; font-weight: bold; width: 100%; text-align: center; display: block; padding: 8px 0; height: auto; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-decoration: none;">
+					<?php esc_html_e('Apply to Become an Affiliate', 'advanced-scripts-manager'); ?>
+				</a>
+			</div>
+
 			<!-- Upgrade to Pro Card -->
 			<div class="asm-upgrade-pro-section" style="background: linear-gradient(135deg, #1e3a8a, #3b82f6); color: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);">
 				<h3 style="color: white; margin-top: 0; font-size: 18px; font-weight: 700;"><?php esc_html_e('🚀 Upgrade to Pro', 'header-footer-script-adder'); ?></h3>
@@ -149,19 +159,8 @@
 			</div>
 
 
-			<div class="asm-promote-plugin">
-				<h3><?php esc_html_e('Related Plugin:', 'advanced-scripts-manager'); ?></h3>
-				<p><?php esc_html_e('Are you tired of manually translating your WordPress posts and pages? Introducing the ultimate solution:', 'advanced-scripts-manager'); ?></p>
-				<a href="https://wordpress.org/plugins/translate-post-to-language/" target="_blank">
-					<img src="<?php echo esc_url(plugins_url() . '/header-and-footer-script-adder/assets/tptl.png'); ?>" alt="Translate Post to Language" width="128" height="128" />
-					<h4>Translate Post to Language</h4>
-					<p><?php esc_html_e('Automatically translate your WordPress posts and pages to the languages of your choice, with just a few clicks. Supports multiple languages and translation services.', 'advanced-scripts-manager'); ?></p>
-				</a>
-			</div>
-
 		</div>
 	</div>
-
 
 
 

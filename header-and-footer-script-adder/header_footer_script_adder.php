@@ -12,7 +12,7 @@
  * Plugin Name:       Header Footer Script Adder
  * Plugin URI:        https://wordpress.org/plugins/header-and-footer-script-adder
  * Description:       Plugin for adding scripts in header and footer
- * Version:           2.0.7
+ * Version:           2.1
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            mahethekiller
@@ -31,7 +31,7 @@ if ( !defined( 'WPINC' ) ) {
  * Start at version 2.0.3 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'ASM_VERSION', '2.0.7' );
+define( 'ASM_VERSION', '2.1' );
 /**
  * Define plugin constants
  */
@@ -231,4 +231,26 @@ function hafsa_fs_uninstall_cleanup_single() {
             wp_delete_post( $snippet->ID, true );
         }
     }
+}
+
+/**
+ * Add Affiliate Program external link to the submenu
+ */
+add_action( 'admin_menu', 'hafsa_add_affiliate_menu_link', 999 );
+function hafsa_add_affiliate_menu_link() {
+    add_submenu_page(
+        'custom-scripts',
+        __( 'Affiliate Program', 'header-footer-script-adder' ),
+        __( 'Affiliate Program', 'header-footer-script-adder' ),
+        'manage_options',
+        'asm-affiliate',
+        'hafsa_render_affiliate_page'
+    );
+}
+
+function hafsa_render_affiliate_page() {
+    echo '<div class="wrap">';
+    echo '<h1 style="margin-bottom: 20px;">' . esc_html__( 'Join Our Affiliate Program', 'header-footer-script-adder' ) . '</h1>';
+    echo '<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfq0cqK6Y6XycTH36ioiuou3b2fpDiSu4Ez9UQauA-1Z9OiOQ/viewform?embedded=true" width="100%" height="1750" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>';
+    echo '</div>';
 }
