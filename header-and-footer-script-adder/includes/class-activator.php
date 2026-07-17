@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Fired during plugin activation
  *
@@ -19,7 +23,7 @@
  * @subpackage HeaderFooterScriptAdder/includes
  * @author     Header Footer Script Adder
  */
-class ASM_Activator
+class HAFSA_Activator
 {
 
     /**

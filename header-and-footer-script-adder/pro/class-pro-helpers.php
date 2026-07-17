@@ -6,8 +6,8 @@
  * @subpackage HeaderFooterScriptAdderPro/includes
  */
 
-if ( ! defined( 'WPINC' ) ) {
-	die;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 class ASM_Pro_Helpers {
@@ -18,11 +18,12 @@ class ASM_Pro_Helpers {
 	 * @return string 'mobile'|'tablet'|'desktop'
 	 */
 	public static function get_device_type() {
-		if ( empty( $_SERVER['HTTP_USER_AGENT'] ) ) {
+		if ( empty( $_SERVER['HTTP_USER_AGENT'] ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			return 'desktop';
 		}
 
-		$ua = strtolower( $_SERVER['HTTP_USER_AGENT'] );
+		$ua = sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$ua = strtolower( $ua );
 
 		// Tablet detection
 		if ( preg_match( '/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i', $ua ) ) {

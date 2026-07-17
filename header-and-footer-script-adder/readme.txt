@@ -1,15 +1,15 @@
-=== Header Footer Script Adder – Insert Code in Header, Body & Footer ===
+=== Header Footer Script Adder ===
 Contributors: mahethekiller, freemius
-Tags: header, footer, body, insert code, add scripts, google analytics, facebook pixel, tracking, custom css, javascript, meta tags, seo, tag manager, chat widgets
+Tags: header, footer, body, insert code, add scripts
 Requires at least: 6.0
 Tested up to: 7.0
 Donate link: https://www.buymeacoffee.com/mahethekiller
 Requires PHP: 7.4
-Stable tag: 2.1
+Stable tag: 2.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Easily add custom scripts and code to your WordPress site’s header, body, or footer. Perfect for Google Analytics, Tag Manager, pixels, meta tags, custom CSS, and JavaScript.
+Easily insert custom HTML, CSS, and JavaScript into your WordPress site's header, body, and footer without modifying theme files.
 
 == Description ==
 

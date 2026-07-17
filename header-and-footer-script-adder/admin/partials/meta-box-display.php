@@ -19,23 +19,23 @@
 
 <div class="asm-meta-box">
 	<p class="description">
-		<?php esc_html_e('Add custom scripts that will load only on this specific post or page. These scripts will be loaded in addition to any global scripts.', 'advanced-scripts-manager'); ?>
+		<?php esc_html_e('Add custom scripts that will load only on this specific post or page. These scripts will be loaded in addition to any global scripts.', 'header-and-footer-script-adder'); ?>
 
 	</p>
 	<p class="description" style="color: #b32d2e;">
-	<?php esc_html_e('Found a bug? Please report it to us by clicking ', 'advanced-scripts-manager'); ?>
+	<?php esc_html_e('Found a bug? Please report it to us by clicking ', 'header-and-footer-script-adder'); ?>
 				<a href="https://onlinetxttools.com/contact/" target="_blank">
-					<?php esc_html_e('here', 'advanced-scripts-manager'); ?>
+					<?php esc_html_e('here', 'header-and-footer-script-adder'); ?>
 				</a>
 				</p>
 				<p></p>
 
 	<div class="asm-meta-field">
 		<label for="asm_header_scripts">
-			<strong><?php esc_html_e('Header Scripts', 'advanced-scripts-manager'); ?></strong>
+			<strong><?php esc_html_e('Header Scripts', 'header-and-footer-script-adder'); ?></strong>
 		</label>
 		<p class="description">
-			<?php esc_html_e('Scripts added here will be injected into the <head> section for this page only.', 'advanced-scripts-manager'); ?>
+			<?php esc_html_e('Scripts added here will be injected into the <head> section for this page only.', 'header-and-footer-script-adder'); ?>
 		</p>
 		<textarea
 			id="asm_header_scripts"
@@ -43,16 +43,16 @@
 			rows="8"
 			cols="80"
 			class="asm-code-editor large-text"
-			placeholder="<?php esc_attr_e('Enter your header scripts here...', 'advanced-scripts-manager'); ?>"
+			placeholder="<?php esc_attr_e('Enter your header scripts here...', 'header-and-footer-script-adder'); ?>"
 		><?php echo esc_textarea($header_scripts); ?></textarea>
 	</div>
 
 	<div class="asm-meta-field">
 		<label for="asm_body_scripts">
-			<strong><?php esc_html_e('Body Scripts', 'advanced-scripts-manager'); ?></strong>
+			<strong><?php esc_html_e('Body Scripts', 'header-and-footer-script-adder'); ?></strong>
 		</label>
 		<p class="description">
-			<?php esc_html_e('Scripts added here will be injected immediately after the opening <body> tag for this page only.', 'advanced-scripts-manager'); ?>
+			<?php esc_html_e('Scripts added here will be injected immediately after the opening <body> tag for this page only.', 'header-and-footer-script-adder'); ?>
 		</p>
 		<textarea
 			id="asm_body_scripts"
@@ -60,16 +60,16 @@
 			rows="8"
 			cols="80"
 			class="asm-code-editor large-text"
-			placeholder="<?php esc_attr_e('Enter your body scripts here...', 'advanced-scripts-manager'); ?>"
+			placeholder="<?php esc_attr_e('Enter your body scripts here...', 'header-and-footer-script-adder'); ?>"
 		><?php echo esc_textarea($body_scripts); ?></textarea>
 	</div>
 
 	<div class="asm-meta-field">
 		<label for="asm_footer_scripts">
-			<strong><?php esc_html_e('Footer Scripts', 'advanced-scripts-manager'); ?></strong>
+			<strong><?php esc_html_e('Footer Scripts', 'header-and-footer-script-adder'); ?></strong>
 		</label>
 		<p class="description">
-			<?php esc_html_e('Scripts added here will be injected before the closing </body> tag for this page only.', 'advanced-scripts-manager'); ?>
+			<?php esc_html_e('Scripts added here will be injected before the closing </body> tag for this page only.', 'header-and-footer-script-adder'); ?>
 		</p>
 		<textarea
 			id="asm_footer_scripts"
@@ -77,17 +77,17 @@
 			rows="8"
 			cols="80"
 			class="asm-code-editor large-text"
-			placeholder="<?php esc_attr_e('Enter your footer scripts here...', 'advanced-scripts-manager'); ?>"
+			placeholder="<?php esc_attr_e('Enter your footer scripts here...', 'header-and-footer-script-adder'); ?>"
 		><?php echo esc_textarea($footer_scripts); ?></textarea>
 	</div>
 
 	<div class="asm-meta-info">
-		<h4><?php esc_html_e('Usage Tips:', 'advanced-scripts-manager'); ?></h4>
+		<h4><?php esc_html_e('Usage Tips:', 'header-and-footer-script-adder'); ?></h4>
 		<ul>
-			<li><?php esc_html_e('Use header scripts for CSS styles, meta tags, and critical JavaScript that needs to load early.', 'advanced-scripts-manager'); ?></li>
-			<li><?php esc_html_e('Use body scripts for tracking codes like Google Tag Manager that need to fire immediately.', 'advanced-scripts-manager'); ?></li>
-			<li><?php esc_html_e('Use footer scripts for non-critical JavaScript and analytics that can load after the page content.', 'advanced-scripts-manager'); ?></li>
-			<li><?php esc_html_e('All scripts are automatically sanitized for security while preserving valid HTML, CSS, and JavaScript.', 'advanced-scripts-manager'); ?></li>
+			<li><?php esc_html_e('Use header scripts for CSS styles, meta tags, and critical JavaScript that needs to load early.', 'header-and-footer-script-adder'); ?></li>
+			<li><?php esc_html_e('Use body scripts for tracking codes like Google Tag Manager that need to fire immediately.', 'header-and-footer-script-adder'); ?></li>
+			<li><?php esc_html_e('Use footer scripts for non-critical JavaScript and analytics that can load after the page content.', 'header-and-footer-script-adder'); ?></li>
+			<li><?php esc_html_e('All scripts are automatically sanitized for security while preserving valid HTML, CSS, and JavaScript.', 'header-and-footer-script-adder'); ?></li>
 		</ul>
 	</div>
 	

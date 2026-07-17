@@ -77,6 +77,7 @@ class ASM_Pro_Public {
 			'post_type'      => 'asm_snippet',
 			'post_status'    => 'publish',
 			'posts_per_page' => -1,
+			// phpcs:ignore WordPress.DB.SlowDBQuery
 			'meta_query'     => array(
 				'relation' => 'AND',
 				array(
@@ -122,6 +123,18 @@ class ASM_Pro_Public {
 
 		foreach ( $snippets as $snippet ) {
 			if ( $this->should_load_snippet( $snippet['id'] ) ) {
+				// Refuse to render snippets whose author cannot post unfiltered HTML
+				$author_can_unfiltered = get_post_meta( $snippet['id'], '_asm_code_author_can_unfiltered_html', true );
+				if ( '' === $author_can_unfiltered ) {
+					// Fallback for legacy snippets: check post author capability
+					$author_id = get_post_field( 'post_author', $snippet['id'] );
+					if ( ! user_can( $author_id, 'unfiltered_html' ) ) {
+						continue;
+					}
+				} elseif ( '1' !== $author_can_unfiltered ) {
+					continue;
+				}
+
 				$code = $snippet['code'];
 
 				// Apply Minification if enabled
@@ -142,7 +155,7 @@ class ASM_Pro_Public {
 					$this->enqueue_code_style_or_script( $snippet['id'], $code );
 				} else {
 					echo "\n<!-- Header Footer Script Adder Pro: " . esc_html( $snippet['title'] ) . " -->\n";
-					echo $code . "\n";
+					echo $code . "\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				}
 			}
 		}
@@ -242,7 +255,7 @@ class ASM_Pro_Public {
 
 		if ( $has_style ) {
 			// Enqueue inline style hooked onto a core style sheet handle
-			wp_register_style( 'asm-pro-dummy-' . $id, false );
+			wp_register_style( 'asm-pro-dummy-' . $id, false, array(), ASM_VERSION );
 			wp_enqueue_style( 'asm-pro-dummy-' . $id );
 			wp_add_inline_style( 'asm-pro-dummy-' . $id, $clean_code );
 		} elseif ( $has_script ) {
@@ -250,7 +263,7 @@ class ASM_Pro_Public {
 			wp_add_inline_script( 'jquery', $clean_code );
 		} else {
 			// fallback output
-			echo $code;
+			echo $code; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 	}
 
@@ -328,6 +341,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		$ga4_id = sanitize_text_field( $this->pixel_settings['ga4_id'] );
 		?>
 <!-- Google Analytics 4 (Header) -->
+<?php // phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript ?>
 <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo esc_attr( $ga4_id ); ?>"></script>
 <script>
   window.dataLayer = window.dataLayer || [];

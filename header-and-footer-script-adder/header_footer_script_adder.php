@@ -12,26 +12,28 @@
  * Plugin Name:       Header Footer Script Adder
  * Plugin URI:        https://wordpress.org/plugins/header-and-footer-script-adder
  * Description:       Plugin for adding scripts in header and footer
- * Version:           2.1
+ * Version:           2.1.1
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            mahethekiller
  * Author URI:        https://wordpress.org/support/users/mahethekiller
- * Text Domain:       header-footer-script-adder
+ * Text Domain:       header-and-footer-script-adder
  * License:           GPL v2 or later
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Network:           false
  */
+
 // If this file is called directly, abort.
 if ( !defined( 'WPINC' ) ) {
     die;
 }
+
 /**
  * Currently plugin version.
  * Start at version 2.0.3 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'ASM_VERSION', '2.1' );
+define( 'ASM_VERSION', '2.1.1' );
+
 /**
  * Define plugin constants
  */
@@ -39,6 +41,7 @@ define( 'ASM_PLUGIN_FILE', __FILE__ );
 define( 'ASM_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ASM_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'ASM_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
+
 if ( !function_exists( 'hafsa_fs' ) ) {
     // Create a helper function for easy SDK access.
     function hafsa_fs() {
@@ -70,32 +73,36 @@ if ( !function_exists( 'hafsa_fs' ) ) {
     // Signal that SDK was initiated.
     do_action( 'hafsa_fs_loaded' );
 }
+
 require_once ASM_PLUGIN_DIR . 'includes/helpers.php';
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-activator.php
  */
-function asm_activate() {
+function hafsa_activate() {
     require_once ASM_PLUGIN_DIR . 'includes/class-activator.php';
-    ASM_Activator::activate();
+    HAFSA_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-deactivator.php
  */
-function asm_deactivate() {
+function hafsa_deactivate() {
     require_once ASM_PLUGIN_DIR . 'includes/class-deactivator.php';
-    ASM_Deactivator::deactivate();
+    HAFSA_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'asm_activate' );
-register_deactivation_hook( __FILE__, 'asm_deactivate' );
+register_activation_hook( __FILE__, 'hafsa_activate' );
+register_deactivation_hook( __FILE__, 'hafsa_deactivate' );
+
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
 require ASM_PLUGIN_DIR . 'includes/class-core.php';
+
 /**
  * Begins execution of the plugin.
  *
@@ -107,17 +114,17 @@ require ASM_PLUGIN_DIR . 'includes/class-core.php';
  */
 add_action(
     'upgrader_process_complete',
-    'asm_on_plugin_update',
+    'hafsa_on_plugin_update',
     10,
     2
 );
-function asm_on_plugin_update(  $upgrader_object, $options  ) {
+function hafsa_on_plugin_update( $upgrader_object, $options ) {
     if ( $options['action'] === 'update' && $options['type'] === 'plugin' ) {
-        if ( !empty( $options['plugins'] ) && is_array( $options['plugins'] ) ) {
+        if ( ! empty( $options['plugins'] ) && is_array( $options['plugins'] ) ) {
             foreach ( $options['plugins'] as $plugin ) {
                 if ( strpos( $plugin, 'header-footer-script-adder.php' ) !== false ) {
-                    if ( function_exists( 'asm_send_site_info_to_google_sheet' ) ) {
-                        asm_send_site_info_to_google_sheet( 'update' );
+                    if ( function_exists( 'hafsa_send_site_info_to_google_sheet' ) ) {
+                        hafsa_send_site_info_to_google_sheet( 'update' );
                     }
                 }
             }
@@ -154,12 +161,14 @@ add_action( 'admin_head', function () {
         }
     </style>';
 } );
-function asm_run() {
+
+function hafsa_run() {
     $plugin = new ASM_Core();
     $plugin->run();
 }
 
-asm_run();
+hafsa_run();
+
 /**
  * Load Pro features if premium code is available
  */
@@ -171,28 +180,30 @@ if ( hafsa_is_pro_active() && file_exists( ASM_PLUGIN_DIR . 'pro/class-pro-helpe
     require_once ASM_PLUGIN_DIR . 'pro/class-pro-helpers.php';
     if ( is_admin() ) {
         require_once ASM_PLUGIN_DIR . 'pro/class-pro-admin.php';
-        $pro_admin = new ASM_Pro_Admin();
-        $pro_admin->init();
+        $hafsa_pro_admin = new ASM_Pro_Admin();
+        $hafsa_pro_admin->init();
     }
     require_once ASM_PLUGIN_DIR . 'pro/class-pro-public.php';
-    $pro_public = new ASM_Pro_Public();
-    $pro_public->init();
+    $hafsa_pro_public = new ASM_Pro_Public();
+    $hafsa_pro_public->init();
 }
+
 /**
  * Uninstall logic for Freemius
  */
-hafsa_fs()->add_action( 'after_uninstall', 'hafsa_fs_uninstall_cleanup' );
-function hafsa_fs_uninstall_cleanup() {
+hafsa_fs()->add_action( 'after_uninstall', 'hafsa_uninstall_cleanup' );
+function hafsa_uninstall_cleanup() {
     if ( is_multisite() ) {
         global $wpdb;
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
         $blog_ids = $wpdb->get_col( "SELECT blog_id FROM {$wpdb->blogs}" );
         foreach ( $blog_ids as $blog_id ) {
             switch_to_blog( $blog_id );
-            hafsa_fs_uninstall_cleanup_single();
+            hafsa_uninstall_cleanup_single();
             restore_current_blog();
         }
     } else {
-        hafsa_fs_uninstall_cleanup_single();
+        hafsa_uninstall_cleanup_single();
     }
     if ( function_exists( 'wp_cache_flush' ) ) {
         wp_cache_flush();
@@ -202,22 +213,29 @@ function hafsa_fs_uninstall_cleanup() {
     }
 }
 
-function hafsa_fs_uninstall_cleanup_single() {
+function hafsa_uninstall_cleanup_single() {
     $remove_data = get_option( 'asm_remove_data_on_uninstall', false );
     if ( $remove_data ) {
         delete_option( 'asm_global_settings' );
         delete_option( 'asm_version' );
         delete_option( 'asm_remove_data_on_uninstall' );
         global $wpdb;
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
         $wpdb->delete( $wpdb->postmeta, array(
+            // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
             'meta_key' => '_asm_header_scripts',
         ), array('%s') );
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
         $wpdb->delete( $wpdb->postmeta, array(
+            // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
             'meta_key' => '_asm_body_scripts',
         ), array('%s') );
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
         $wpdb->delete( $wpdb->postmeta, array(
+            // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
             'meta_key' => '_asm_footer_scripts',
         ), array('%s') );
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.SlowDBQuery.slow_db_query_meta_key
         $wpdb->query( "DELETE FROM {$wpdb->postmeta} WHERE meta_key LIKE '_asm_%'" );
         wp_cache_flush();
         delete_option( 'asm_pro_pixel_settings' );
@@ -240,8 +258,8 @@ add_action( 'admin_menu', 'hafsa_add_affiliate_menu_link', 999 );
 function hafsa_add_affiliate_menu_link() {
     add_submenu_page(
         'custom-scripts',
-        __( 'Affiliate Program', 'header-footer-script-adder' ),
-        __( 'Affiliate Program', 'header-footer-script-adder' ),
+        __( 'Affiliate Program', 'header-and-footer-script-adder' ),
+        __( 'Affiliate Program', 'header-and-footer-script-adder' ),
         'manage_options',
         'asm-affiliate',
         'hafsa_render_affiliate_page'
@@ -250,7 +268,7 @@ function hafsa_add_affiliate_menu_link() {
 
 function hafsa_render_affiliate_page() {
     echo '<div class="wrap">';
-    echo '<h1 style="margin-bottom: 20px;">' . esc_html__( 'Join Our Affiliate Program', 'header-footer-script-adder' ) . '</h1>';
+    echo '<h1 style="margin-bottom: 20px;">' . esc_html__( 'Join Our Affiliate Program', 'header-and-footer-script-adder' ) . '</h1>';
     echo '<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfq0cqK6Y6XycTH36ioiuou3b2fpDiSu4Ez9UQauA-1Z9OiOQ/viewform?embedded=true" width="100%" height="1750" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>';
     echo '</div>';
 }

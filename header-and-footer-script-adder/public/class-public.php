@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * The public-facing functionality of the plugin.
@@ -127,9 +130,9 @@ class ASM_Public
 		}
 
 		// Output scripts with proper formatting
-		echo "\n<!-- Advanced Scripts Manager - Global " . ucfirst($location) . " Scripts -->\n";
-		echo $scripts . "\n";
-		echo "<!-- End Advanced Scripts Manager - Global " . ucfirst($location) . " Scripts -->\n";
+		echo "\n<!-- Advanced Scripts Manager - Global " . esc_html( ucfirst($location) ) . " Scripts -->\n";
+		echo $scripts . "\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo "<!-- End Advanced Scripts Manager - Global " . esc_html( ucfirst($location) ) . " Scripts -->\n";
 	}
 
 	/**
@@ -158,9 +161,9 @@ class ASM_Public
 		}
 
 		// Output scripts with proper formatting
-		echo "\n<!-- Advanced Scripts Manager - Page-Specific " . ucfirst($location) . " Scripts -->\n";
-		echo $scripts . "\n";
-		echo "<!-- End Advanced Scripts Manager - Page-Specific " . ucfirst($location) . " Scripts -->\n";
+		echo "\n<!-- Advanced Scripts Manager - Page-Specific " . esc_html( ucfirst($location) ) . " Scripts -->\n";
+		echo $scripts . "\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo "<!-- End Advanced Scripts Manager - Page-Specific " . esc_html( ucfirst($location) ) . " Scripts -->\n";
 	}
 
 	/**

@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * The admin-specific functionality of the plugin.
@@ -110,8 +113,8 @@ class ASM_Admin
 	{
 		// Add top-level menu page
 		add_menu_page(
-			__('Header Footer Script Adder', 'header-footer-script-adder'),
-			__('Header Footer Script Adder', 'header-footer-script-adder'),
+			__('Header Footer Script Adder', 'header-and-footer-script-adder'),
+			__('Header Footer Script Adder', 'header-and-footer-script-adder'),
 			'manage_options',
 			'custom-scripts',
 			array($this, 'display_admin_page'),
@@ -162,7 +165,7 @@ class ASM_Admin
 		// Add settings section
 		add_settings_section(
 			'asm_global_section',
-			__('Global Script Settings', 'advanced-scripts-manager'),
+			__('Global Script Settings', 'header-and-footer-script-adder'),
 			array($this, 'settings_section_callback'),
 			'asm_settings'
 		);
@@ -170,7 +173,7 @@ class ASM_Admin
 		// Header scripts field
 		add_settings_field(
 			'header_scripts',
-			__('Header Scripts', 'advanced-scripts-manager'),
+			__('Header Scripts', 'header-and-footer-script-adder'),
 			array($this, 'header_scripts_callback'),
 			'asm_settings',
 			'asm_global_section'
@@ -179,7 +182,7 @@ class ASM_Admin
 		// Body scripts field
 		add_settings_field(
 			'body_scripts',
-			__('Body Scripts', 'advanced-scripts-manager'),
+			__('Body Scripts', 'header-and-footer-script-adder'),
 			array($this, 'body_scripts_callback'),
 			'asm_settings',
 			'asm_global_section'
@@ -188,7 +191,7 @@ class ASM_Admin
 		// Footer scripts field
 		add_settings_field(
 			'footer_scripts',
-			__('Footer Scripts', 'advanced-scripts-manager'),
+			__('Footer Scripts', 'header-and-footer-script-adder'),
 			array($this, 'footer_scripts_callback'),
 			'asm_settings',
 			'asm_global_section'
@@ -202,8 +205,8 @@ class ASM_Admin
 	 */
 	public function settings_section_callback()
 	{
-		echo '<p style="float: left;">' . esc_html__('Configure global scripts that will be injected into your website.', 'advanced-scripts-manager') . '</p>';
-		submit_button(__('Save Scripts', 'advanced-scripts-manager'), '', 'asm_save_button', false, array('style' => 'float: right;'));
+		echo '<p style="float: left;">' . esc_html__('Configure global scripts that will be injected into your website.', 'header-and-footer-script-adder') . '</p>';
+		submit_button(__('Save Scripts', 'header-and-footer-script-adder'), '', 'asm_save_button', false, array('style' => 'float: right;'));
 	}
 
 	/**
@@ -219,21 +222,22 @@ class ASM_Admin
 
 		echo '<div class="asm-field-group">';
 		echo '<textarea id="header_scripts" name="asm_global_settings[header_scripts]" rows="10" cols="80" class="asm-code-editor">' . esc_textarea($header_scripts) . '</textarea>';
-		echo '<p class="description">' . esc_html__('Scripts added here will be injected into the &lt;head&gt; section.', 'advanced-scripts-manager') . '</p>';
+		echo '<p class="description">' . esc_html__('Scripts added here will be injected into the &lt;head&gt; section.', 'header-and-footer-script-adder') . '</p>';
 
-		echo '<label for="header_condition">' . esc_html__('Load on:', 'header-footer-script-adder') . '</label>';
+		echo '<label for="header_condition">' . esc_html__('Load on:', 'header-and-footer-script-adder') . '</label>';
 		echo '<select id="header_condition" name="asm_global_settings[header_condition]" onchange="toggleSpecificSelection(this, \'header\')">';
-		echo '<option value="sitewide"' . selected($header_condition, 'sitewide', false) . '>' . esc_html__('Sitewide', 'header-footer-script-adder') . '</option>';
-		echo '<option value="homepage"' . selected($header_condition, 'homepage', false) . '>' . esc_html__('Homepage Only', 'header-footer-script-adder') . '</option>';
-		echo '<option value="singular"' . selected($header_condition, 'singular', false) . '>' . esc_html__('Posts & Pages', 'header-footer-script-adder') . '</option>';
-		echo '<option value="specific"' . selected($header_condition, 'specific', false) . '>' . esc_html__('Specific Posts/Pages', 'header-footer-script-adder') . '</option>';
-		echo '<option value="archive"' . selected($header_condition, 'archive', false) . '>' . esc_html__('Archive Pages', 'header-footer-script-adder') . '</option>';
+		echo '<option value="sitewide"' . selected($header_condition, 'sitewide', false) . '>' . esc_html__('Sitewide', 'header-and-footer-script-adder') . '</option>';
+		echo '<option value="homepage"' . selected($header_condition, 'homepage', false) . '>' . esc_html__('Homepage Only', 'header-and-footer-script-adder') . '</option>';
+		echo '<option value="singular"' . selected($header_condition, 'singular', false) . '>' . esc_html__('Posts & Pages', 'header-and-footer-script-adder') . '</option>';
+		echo '<option value="specific"' . selected($header_condition, 'specific', false) . '>' . esc_html__('Specific Posts/Pages', 'header-and-footer-script-adder') . '</option>';
+		echo '<option value="archive"' . selected($header_condition, 'archive', false) . '>' . esc_html__('Archive Pages', 'header-and-footer-script-adder') . '</option>';
 		echo '</select>';
 
 		// Add specific post/page selection
 		$header_specific_posts = isset($settings['header_specific_posts']) ? $settings['header_specific_posts'] : array();
 		echo '<div id="header_specific_selection" class="asm-specific-selection" style="' . ($header_condition === 'specific' ? 'display:block;' : 'display:none;') . '">';
-		echo '<label>' . esc_html__('Select specific posts/pages:', 'header-footer-script-adder') . '</label>';
+		echo '<label>' . esc_html__('Select specific posts/pages:', 'header-and-footer-script-adder') . '</label>';
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $this->render_post_page_selector('asm_global_settings[header_specific_posts][]', $header_specific_posts);
 		echo '</div>';
 		echo '</div>';
@@ -252,21 +256,22 @@ class ASM_Admin
 
 		echo '<div class="asm-field-group">';
 		echo '<textarea id="body_scripts" name="asm_global_settings[body_scripts]" rows="10" cols="80" class="asm-code-editor">' . esc_textarea($body_scripts) . '</textarea>';
-		echo '<p class="description">' . esc_html__('Scripts added here will be injected immediately after the opening &lt;body&gt; tag.', 'advanced-scripts-manager') . '</p>';
+		echo '<p class="description">' . esc_html__('Scripts added here will be injected immediately after the opening &lt;body&gt; tag.', 'header-and-footer-script-adder') . '</p>';
 
-		echo '<label for="body_condition">' . esc_html__('Load on:', 'header-footer-script-adder') . '</label>';
+		echo '<label for="body_condition">' . esc_html__('Load on:', 'header-and-footer-script-adder') . '</label>';
 		echo '<select id="body_condition" name="asm_global_settings[body_condition]" onchange="toggleSpecificSelection(this, \'body\')">';
-		echo '<option value="sitewide"' . selected($body_condition, 'sitewide', false) . '>' . esc_html__('Sitewide', 'header-footer-script-adder') . '</option>';
-		echo '<option value="homepage"' . selected($body_condition, 'homepage', false) . '>' . esc_html__('Homepage Only', 'header-footer-script-adder') . '</option>';
-		echo '<option value="singular"' . selected($body_condition, 'singular', false) . '>' . esc_html__('Posts & Pages', 'header-footer-script-adder') . '</option>';
-		echo '<option value="specific"' . selected($body_condition, 'specific', false) . '>' . esc_html__('Specific Posts/Pages', 'header-footer-script-adder') . '</option>';
-		echo '<option value="archive"' . selected($body_condition, 'archive', false) . '>' . esc_html__('Archive Pages', 'header-footer-script-adder') . '</option>';
+		echo '<option value="sitewide"' . selected($body_condition, 'sitewide', false) . '>' . esc_html__('Sitewide', 'header-and-footer-script-adder') . '</option>';
+		echo '<option value="homepage"' . selected($body_condition, 'homepage', false) . '>' . esc_html__('Homepage Only', 'header-and-footer-script-adder') . '</option>';
+		echo '<option value="singular"' . selected($body_condition, 'singular', false) . '>' . esc_html__('Posts & Pages', 'header-and-footer-script-adder') . '</option>';
+		echo '<option value="specific"' . selected($body_condition, 'specific', false) . '>' . esc_html__('Specific Posts/Pages', 'header-and-footer-script-adder') . '</option>';
+		echo '<option value="archive"' . selected($body_condition, 'archive', false) . '>' . esc_html__('Archive Pages', 'header-and-footer-script-adder') . '</option>';
 		echo '</select>';
 
 		// Add specific post/page selection
 		$body_specific_posts = isset($settings['body_specific_posts']) ? $settings['body_specific_posts'] : array();
 		echo '<div id="body_specific_selection" class="asm-specific-selection" style="' . ($body_condition === 'specific' ? 'display:block;' : 'display:none;') . '">';
-		echo '<label>' . esc_html__('Select specific posts/pages:', 'header-footer-script-adder') . '</label>';
+		echo '<label>' . esc_html__('Select specific posts/pages:', 'header-and-footer-script-adder') . '</label>';
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $this->render_post_page_selector('asm_global_settings[body_specific_posts][]', $body_specific_posts);
 		echo '</div>';
 		echo '</div>';
@@ -285,21 +290,22 @@ class ASM_Admin
 
 		echo '<div class="asm-field-group">';
 		echo '<textarea id="footer_scripts" name="asm_global_settings[footer_scripts]" rows="10" cols="80" class="asm-code-editor">' . esc_textarea($footer_scripts) . '</textarea>';
-		echo '<p class="description">' . esc_html__('Scripts added here will be injected before the closing &lt;/body&gt; tag.', 'advanced-scripts-manager') . '</p>';
+		echo '<p class="description">' . esc_html__('Scripts added here will be injected before the closing &lt;/body&gt; tag.', 'header-and-footer-script-adder') . '</p>';
 
-		echo '<label for="footer_condition">' . esc_html__('Load on:', 'header-footer-script-adder') . '</label>';
+		echo '<label for="footer_condition">' . esc_html__('Load on:', 'header-and-footer-script-adder') . '</label>';
 		echo '<select id="footer_condition" name="asm_global_settings[footer_condition]" onchange="toggleSpecificSelection(this, \'footer\')">';
-		echo '<option value="sitewide"' . selected($footer_condition, 'sitewide', false) . '>' . esc_html__('Sitewide', 'header-footer-script-adder') . '</option>';
-		echo '<option value="homepage"' . selected($footer_condition, 'homepage', false) . '>' . esc_html__('Homepage Only', 'header-footer-script-adder') . '</option>';
-		echo '<option value="singular"' . selected($footer_condition, 'singular', false) . '>' . esc_html__('Posts & Pages', 'header-footer-script-adder') . '</option>';
-		echo '<option value="specific"' . selected($footer_condition, 'specific', false) . '>' . esc_html__('Specific Posts/Pages', 'header-footer-script-adder') . '</option>';
-		echo '<option value="archive"' . selected($footer_condition, 'archive', false) . '>' . esc_html__('Archive Pages', 'header-footer-script-adder') . '</option>';
+		echo '<option value="sitewide"' . selected($footer_condition, 'sitewide', false) . '>' . esc_html__('Sitewide', 'header-and-footer-script-adder') . '</option>';
+		echo '<option value="homepage"' . selected($footer_condition, 'homepage', false) . '>' . esc_html__('Homepage Only', 'header-and-footer-script-adder') . '</option>';
+		echo '<option value="singular"' . selected($footer_condition, 'singular', false) . '>' . esc_html__('Posts & Pages', 'header-and-footer-script-adder') . '</option>';
+		echo '<option value="specific"' . selected($footer_condition, 'specific', false) . '>' . esc_html__('Specific Posts/Pages', 'header-and-footer-script-adder') . '</option>';
+		echo '<option value="archive"' . selected($footer_condition, 'archive', false) . '>' . esc_html__('Archive Pages', 'header-and-footer-script-adder') . '</option>';
 		echo '</select>';
 
 		// Add specific post/page selection
 		$footer_specific_posts = isset($settings['footer_specific_posts']) ? $settings['footer_specific_posts'] : array();
 		echo '<div id="footer_specific_selection" class="asm-specific-selection" style="' . ($footer_condition === 'specific' ? 'display:block;' : 'display:none;') . '">';
-		echo '<label>' . esc_html__('Select specific posts/pages:', 'header-footer-script-adder') . '</label>';
+		echo '<label>' . esc_html__('Select specific posts/pages:', 'header-and-footer-script-adder') . '</label>';
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $this->render_post_page_selector('asm_global_settings[footer_specific_posts][]', $footer_specific_posts);
 		echo '</div>';
 		echo '</div>';
@@ -485,7 +491,7 @@ class ASM_Admin
 	{
 		add_meta_box(
 			'asm_page_scripts',
-			__('Page-Specific Scripts - Header Footer Script Adder', 'advanced-scripts-manager'),
+			__('Page-Specific Scripts - Header Footer Script Adder', 'header-and-footer-script-adder'),
 			array($this, 'meta_box_callback'),
 			array('post', 'page'),
 			'normal',
@@ -522,8 +528,8 @@ class ASM_Admin
 	{
 		// Verify nonce
 		if (
-			! isset($_POST['asm_meta_box_nonce']) ||
-			! wp_verify_nonce($_POST['asm_meta_box_nonce'], 'asm_save_meta_box_data')
+			! isset($_POST['asm_meta_box_nonce']) || // phpcs:ignore WordPress.Security.NonceVerification
+			! wp_verify_nonce(sanitize_key(wp_unslash($_POST['asm_meta_box_nonce'])), 'asm_save_meta_box_data')
 		) {
 			return;
 		}
@@ -543,8 +549,8 @@ class ASM_Admin
 
 		// Helper to sanitize script boxes
 		$sanitize_field = function ($field_name) use ($post_id, $can_use_scripts) {
-			if (isset($_POST[$field_name])) {
-				$value = wp_unslash($_POST[$field_name]);
+			if (isset($_POST[$field_name])) { // phpcs:ignore WordPress.Security.NonceVerification
+				$value = wp_unslash($_POST[$field_name]); // phpcs:ignore WordPress.Security.NonceVerification, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 				if ($can_use_scripts) {
 					// Admins: save as is (optional strip unwanted tags)
 					update_post_meta($post_id, '_' . $field_name, $value);
@@ -584,7 +590,7 @@ class ASM_Admin
 		));
 
 		if (empty($posts)) {
-			$output .= '<p>' . esc_html__('No posts or pages found.', 'header-footer-script-adder') . '</p>';
+			$output .= '<p>' . esc_html__('No posts or pages found.', 'header-and-footer-script-adder') . '</p>';
 		} else {
 			$output .= '<select name="' . esc_attr($name) . '" multiple="multiple" class="asm-multiselect" size="8">';
 
@@ -595,7 +601,7 @@ class ASM_Admin
 					if ($current_type !== '') {
 						$output .= '</optgroup>';
 					}
-					$type_label = $post->post_type === 'post' ? __('Posts', 'header-footer-script-adder') : __('Pages', 'header-footer-script-adder');
+					$type_label = $post->post_type === 'post' ? __('Posts', 'header-and-footer-script-adder') : __('Pages', 'header-and-footer-script-adder');
 					$output .= '<optgroup label="' . esc_attr($type_label) . '">';
 					$current_type = $post->post_type;
 				}
@@ -607,7 +613,7 @@ class ASM_Admin
 			}
 			$output .= '</optgroup></select>';
 
-			$output .= '<p class="description">' . esc_html__('Hold Ctrl (Cmd on Mac) to select multiple items.', 'header-footer-script-adder') . '</p>';
+			$output .= '<p class="description">' . esc_html__('Hold Ctrl (Cmd on Mac) to select multiple items.', 'header-and-footer-script-adder') . '</p>';
 		}
 
 		$output .= '</div>';

@@ -1,6 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
-function asm_send_site_info_to_google_sheet($event = 'activation') {
+function hafsa_send_site_info_to_google_sheet($event = 'activation') {
     try {
         if ( ! function_exists( 'get_plugin_data' ) ) {
             require_once ABSPATH . 'wp-admin/includes/plugin.php';
